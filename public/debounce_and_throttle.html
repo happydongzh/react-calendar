@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <title>React App</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+
+  <input type="input" id="someText" />
+
+  <p id="default"></p>
+  <p id="debounce"></p>
+  <p id="throttle"></p>
+  <script>
+
+
+    /**
+     * Debounce
+     * 某元素持续变化所触发事件会触发对应的函数不停的执行，
+     * 使用debounce的意义在于使函数在元素停止变化后再执行，
+     * 元素的每次变化触发函数执行，首先看setTimeout的句柄timmer有没有值，有值就会先取消，
+     * 然后setTimeout并将句柄重新赋值到timmer,直到元素不在变化，最后一次的setTimeout会被执行。
+     */
+    function debounce(func, delay = 500) {
+      let timmer;
+      return (...args) => {
+        if (timmer) {
+          console.log(`Debounce: ${args[0].target.id} changed(${args[0].target.value}) within ${delay}ms, timmer cleared.....`);
+          clearTimeout(timmer)
+        };
+        timmer = setTimeout(() => {
+          func(...args);
+        }, delay);
+      }
+    }
+
+    let inputEventHandler_Debounce = debounce((evt) => {
+      defaut_debounce.textContent = evt.target.value;
+    }, 1000);
+
+
+    /**
+     * Throttle
+     * 某元素持续变化的所触发事件会触发对应的函数不停的执行，
+     * 使用throttle的意义在于使函数的执行在某个时间间隔重复执行，而不是每次变化都会执行，
+     * 这样带来的结果就是在input里持续不断的输入，但是函数执行只是每隔1秒才执行，而不是每个键的输入都会执行
+     * 有点像setInterval。
+     * 第一次输入就会设置timmer，因为timmer 默认是没值的，一旦timmer设置好了，再次输入会判断
+     * timmer是否为空，如果不为空则跳过，如果为空则设置timmer，
+     * 而timmer 只有在 setTimeout的callback中才会被重置。
+     */
+    function throttle(func, delay = 500) {
+      let timmer = null;
+      return (...args) => {
+        if (!timmer) {
+          console.log(`Throttle: ${args[0].target.id} changed, No timmer found, here set the timmer`)
+          timmer = setTimeout(() => {
+            func(...args);
+            timmer = null;
+          }, delay);
+        } else {
+          console.log(`Throttle: ${args[0].target.id} changed, timmer is found, will set the timmer once the last timmer is finished(function got executed in browser JS engine)`);
+        }
+      }
+    }
+
+    const inputEventHandler_Throttle = throttle((evt) => {
+      defaut_throttle.textContent = evt.target.value;
+    }, 1000);
+
+
+    let defaut_p = document.getElementById("default");
+    let defaut_debounce = document.getElementById("debounce");
+    let defaut_throttle = document.getElementById("throttle");
+
+
+    document.getElementById("someText").addEventListener('input', (e) => {
+      // inputEventHandler_Debounce(e);
+      inputEventHandler_Throttle(e);
+    });
+
+  </script>
+</body>
+
+</html>

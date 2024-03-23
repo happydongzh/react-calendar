@@ -1,0 +1,363 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+.MainLayout {
+  display: grid;
+  grid-template-columns: 0 auto;
+  height: 100vh;
+  width: 100%;
+  color: #3c3c3c;
+  transition: all 300ms;
+}
+
+.top-bar {
+  background-color: crimson;
+  display: grid;
+  grid-template-columns: auto 2fr auto auto;
+  padding: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  box-shadow: 0px 1px 15px;
+  grid-column-gap: 1rem;
+}
+
+.highlight {
+  color: crimson !important;
+  background-color: whitesmoke !important;
+  font-weight: bolder !important;
+}
+
+div.outOfMonth h5 {
+  color: #3c3c3c; 
+  font-style: italic;
+  font-weight: 300;
+}
+
+.view-mode>button {
+  width: 4rem;
+  height: 2.09rem;
+  background-color: #3c3c3c;
+  border: none;
+  color: whitesmoke;
+  transition: all 200ms;
+}
+
+.view-mode>button:hover {
+  color: crimson;
+  background-color: whitesmoke;
+  font-weight: bolder;
+}
+
+.view-mode>button:first-child {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.view-mode>button:last-child {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.split {
+  background-color: #3c3c3c;
+}
+
+.split:hover {
+  background-color: #3c3c3c;
+  /* width: 10px; */
+  /* transition: all 300ms; */
+  cursor: col-resize;
+}
+
+.left {
+  background-color: #2e2e2e;
+}
+
+.right {
+  overflow: hidden;
+  /* background-color: crimson; */
+  display: grid;
+  grid-template-rows: 5rem auto;
+}
+
+.year-container {
+  overflow: auto;
+  padding: 1rem 0;
+  background-color: #3c3c3c;
+}
+
+.year {
+  display: grid;
+  grid-template-columns: repeat(4, 3fr);
+  grid-template-rows: repeat(3, 4fr);
+  align-content: space-evenly;
+  justify-content: space-evenly;
+  align-items: start;
+  grid-column-gap: 1.5rem;
+  padding: 0.5rem;
+}
+
+h3 {
+  margin: 1rem auto;
+  color: crimson;
+  background-color: #3c3c3c;
+}
+
+.month,
+.month-fullPage,
+.weekday {
+  display: grid;
+  grid-template-columns: repeat(7, 14.28%);
+}
+
+.weekday {
+  overflow: hidden;
+}
+
+.weekday>div {
+  color: crimson;
+}
+
+.weekday p {
+  margin: 1rem auto;
+  font-weight: 500;
+}
+
+.month {
+  justify-content: space-evenly;
+  align-content: space-evenly;
+  align-items: stretch;
+  justify-items: center;
+  grid-row-gap: 0.5rem;
+  color: whitesmoke;
+  margin-top: 1rem;
+}
+
+.month>div>h5 {
+  height: 2rem;
+  width: 2rem;
+  line-height: 2rem;
+  transition: all 200ms;
+  cursor: pointer;
+}
+
+.month>div>h5:hover {
+  color: crimson;
+  background-color: whitesmoke;
+  font-weight: bolder;
+  border-radius: 50%;
+}
+
+.month div.highlight {
+  border-radius: 50%;
+}
+
+.month-container {
+  display: grid;
+  grid-template-rows: 4rem 2rem auto;
+  background-color: #3c3c3c;
+}
+
+.month-fullPage {
+  width: 100%;
+  height: 100%;
+  background-color: #3c3c3c;
+  grid-gap: 1px;
+  border: 1px solid #3c3c3c;
+  justify-items: center;
+  justify-content: center;
+  border: 1px solid #505050;
+}
+
+.month-fullPage>div {
+  width: 100%;
+  color: whitesmoke;
+  border-right: 1px solid #505050;
+  border-bottom: 1px solid #505050;
+}
+
+.daily-container {
+  display: grid;
+  grid-template-rows: 3rem 3rem auto;
+  overflow: hidden;
+}
+
+.daily-container>div {
+  background-color: #3c3c3c;
+}
+
+.daily-hours {
+  background-color: #3c3c3c;
+  color: whitesmoke;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.wd-container {
+  overflow: auto;
+  display: grid;
+  grid-template-rows: 4rem auto;
+  grid-template-columns: auto;
+}
+
+.wd-container>div:first-child {
+  background-color: #3c3c3c;
+}
+
+.weekday>div.wd-container {
+  grid-template-rows: 2rem auto;
+}
+
+.hours {
+  padding-top: 1rem;
+}
+
+.hours>div {
+  padding-top: 10px;
+}
+
+.hours>div>div {
+  height: 4rem;
+  line-height: 4rem;
+  border-top: 1px solid #505050;
+}
+
+.hours>div>div:last-child {
+  border-bottom: 1px solid #505050;
+}
+
+.hours>div>div>div {
+  transform: translateY(-50%);
+  font-size: small;
+  color: rgb(245 245 245 / 50%);
+  background-color: #3c3c3c;
+  max-width: fit-content;
+  height: fit-content;
+  padding: 0 0 0 2rem;
+}
+
+.month-day-highlight {
+  color: crimson;
+  font-weight: bolder;
+  /* border: 1px solid crimson !important; */
+  border-radius: 50%;
+  background-color: whitesmoke;
+}
+
+.timmer {
+  position: absolute;
+  width: 80%;
+  background-color: crimson;
+  border: none !important;
+  height: 1px;
+  left: 4rem;
+}
+
+.timmer>div {
+  width: 10px;
+  height: 10px;
+  background: crimson;
+  margin: 1px auto;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.left-holiday h3 {
+  padding: 1.8rem;
+  margin-top: 0;
+  color: whitesmoke;
+}
+
+.left-holiday>div {
+  text-align: left;
+}
+
+.left-holiday>div>ul {
+  list-style: none;
+  color: whitesmoke;
+}
+
+.left-holiday>div>ul li {
+  margin: -1rem 0rem 1rem 0;
+  padding: 0.5rem;
+  transition: all 200ms;
+}
+
+.left-holiday>div>ul li input {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+  vertical-align: middle;
+}
+
+
+.switch input {
+  display: none;
+}
+
+.switch {
+  display: inline-block;
+  width: 4rem;
+  height: 2rem;
+  position: relative;
+  margin: 4px 1rem 0 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 30px;
+  box-shadow: 0 0 0 2px #777, 0 0 4px #777;
+  cursor: pointer;
+  border: 4px solid transparent;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #777;
+  border-radius: 30px;
+  transform: translateX(-30px);
+  /*translateX(-(w-h))*/
+  transition: 0.2s;
+}
+
+input:checked+.slider:before {
+  transform: translateX(30px);
+  /*translateX(w-h)*/
+  background-color: limeGreen;
+}
+
+input:checked+.slider {
+  box-shadow: 0 0 0 2px limeGreen, 0 0 8px limeGreen;
+}
+
+.switch200 .slider:before {
+  width: 200%;
+  transform: translateX(-82px);
+  /*translateX(-(w-h))*/
+}
+
+.switch200 input:checked+.slider:before {
+  background-color: crimson;
+}
+
+.switch200 input:checked+.slider {
+  box-shadow: 0 0 0 2px crimson, 0 0 8px crimson;
+}
